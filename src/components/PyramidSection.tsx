@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import Accordion from "./Accordion";
@@ -23,14 +24,43 @@ const categories = [
 ];
 
 export default function PyramidSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [activeCategory, setActiveCategory] = useState(0);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const handleScroll = () => {
+      const rect = section.getBoundingClientRect();
+      const sectionHeight = rect.height;
+      const scrolledInto = -rect.top;
+      const progress = Math.max(0, Math.min(1, scrolledInto / sectionHeight));
+
+      if (progress < 0.33) setActiveCategory(0);
+      else if (progress < 0.66) setActiveCategory(1);
+      else setActiveCategory(2);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div
       id="pyramid"
+      ref={sectionRef}
       className="overflow-hidden pl-4 pr-0 pb-10 sm:pl-6 sm:pb-14 md:pl-12 lg:pl-16 lg:pb-12"
     >
-      <div className="grid grid-cols-[minmax(0,18rem)_1fr] items-center gap-4 sm:grid-cols-[minmax(0,22rem)_1fr] sm:gap-6 lg:grid-cols-[minmax(0,26rem)_1fr] lg:gap-10">
-        <div className="pt-2 sm:pt-4 lg:pt-6">
-          <Accordion items={categories} defaultOpen={0} compact />
+      <div className="relative grid grid-cols-[minmax(0,18rem)_1fr] items-start gap-4 sm:grid-cols-[minmax(0,22rem)_1fr] sm:gap-6 lg:grid-cols-[minmax(0,26rem)_1fr] lg:gap-10">
+        <div className="sticky top-24 self-start pt-2 sm:pt-4 lg:pt-6">
+          <Accordion
+            items={categories}
+            defaultOpen={0}
+            activeIndex={activeCategory}
+            compact
+          />
         </div>
 
         <motion.div

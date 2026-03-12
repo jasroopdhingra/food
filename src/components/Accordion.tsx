@@ -11,6 +11,7 @@ interface AccordionItem {
 interface AccordionProps {
   items: AccordionItem[];
   defaultOpen?: number;
+  activeIndex?: number | null;
   onActiveChange?: (index: number | null) => void;
   compact?: boolean;
 }
@@ -18,14 +19,17 @@ interface AccordionProps {
 export default function Accordion({
   items,
   defaultOpen = 0,
+  activeIndex,
   onActiveChange,
   compact = false,
 }: AccordionProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(defaultOpen);
+  const [internalIndex, setInternalIndex] = useState<number | null>(defaultOpen);
+  const controlled = activeIndex !== undefined;
+  const openIndex = controlled ? activeIndex : internalIndex;
 
   const toggle = (index: number) => {
     const next = openIndex === index ? null : index;
-    setOpenIndex(next);
+    if (!controlled) setInternalIndex(next);
     onActiveChange?.(next);
   };
 
