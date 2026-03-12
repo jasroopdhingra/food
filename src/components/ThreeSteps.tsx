@@ -4,9 +4,9 @@ import { motion } from "motion/react";
 
 export default function ThreeSteps() {
   return (
-    <div className="px-4 pt-8 pb-4 sm:px-6 md:px-16 md:pt-12 md:pb-6">
+    <div className="px-4 pt-6 pb-2 sm:px-6 md:px-16 md:pt-8 md:pb-4">
       <motion.h2
-        className="max-w-lg font-serif text-2xl font-normal leading-snug text-white sm:text-3xl md:text-5xl md:leading-snug"
+        className="max-w-lg font-serif text-2xl font-normal leading-snug text-white sm:text-3xl md:text-4xl md:leading-snug"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}

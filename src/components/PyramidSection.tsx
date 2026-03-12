@@ -41,7 +41,7 @@ export default function PyramidSection() {
   const [activeCategory, setActiveCategory] = useState<number | null>(0);
 
   return (
-    <div id="pyramid" className="py-6 md:py-8">
+    <div id="pyramid" className="py-4 md:py-6">
       <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-8">
         <div className="w-full px-4 sm:px-6 md:px-12 lg:w-[42%] lg:pl-12 lg:pr-4 xl:pl-20 xl:pr-8">
           <Accordion
@@ -52,7 +52,7 @@ export default function PyramidSection() {
         </div>
 
         <div className="w-full px-4 sm:px-6 lg:w-[58%] lg:px-8">
-          <div className="mx-auto max-w-sm sm:max-w-md lg:max-w-lg">
+          <div className="mx-auto max-w-xs sm:max-w-sm lg:max-w-sm">
             {tiers.map((tier, i) => (
               <motion.div
                 key={i}
