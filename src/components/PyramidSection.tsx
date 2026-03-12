@@ -61,12 +61,11 @@ export default function PyramidSection() {
             <motion.div
               key={i}
               className={`w-full ${i > 0 ? "-mt-4 sm:-mt-6" : ""}`}
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{
-                duration: 0.6,
-                delay: i * 0.12,
+                duration: 0.7,
+                delay: 0.3 + i * 0.2,
                 ease: [0.25, 0.46, 0.45, 0.94],
               }}
             >
