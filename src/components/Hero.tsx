@@ -49,6 +49,7 @@ const foodCards = [
     position: "right-[25%] top-[65%]",
     floatDuration: 3.5,
     floatDelay: 1.0,
+    imageScale: 1.4,
   },
   {
     name: "Brown Rice",
@@ -166,6 +167,7 @@ export default function Hero() {
                 image={card.image}
                 floatDuration={card.floatDuration}
                 floatDelay={card.floatDelay}
+                imageScale={card.imageScale}
               />
             </motion.div>
           ))}
@@ -195,6 +197,7 @@ export default function Hero() {
               image={card.image}
               floatDuration={card.floatDuration}
               floatDelay={card.floatDelay}
+              imageScale={card.imageScale}
             />
           </motion.div>
         ))}

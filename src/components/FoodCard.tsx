@@ -10,6 +10,7 @@ interface FoodCardProps {
   image: string;
   floatDuration?: number;
   floatDelay?: number;
+  imageScale?: number;
 }
 
 export default function FoodCard({
@@ -18,6 +19,7 @@ export default function FoodCard({
   image,
   floatDuration = 3,
   floatDelay = 0,
+  imageScale = 1,
 }: FoodCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, amount: 0.5 });
@@ -38,14 +40,15 @@ export default function FoodCard({
         whileHover={{ scale: 1.05, boxShadow: "0 8px 30px rgba(0,0,0,0.12)" }}
         transition={{ type: "spring", stiffness: 400, damping: 25 }}
       >
-        <div className="relative flex h-20 w-20 flex-shrink-0 items-center justify-center overflow-hidden">
-          <div className="absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-xl bg-[#E8E1D9]" />
+        <div className="relative h-20 w-20 flex-shrink-0">
+          <div className="absolute inset-0 m-auto h-14 w-14 rounded-xl bg-[#E8E1D9]" />
           <Image
             src={image}
             alt={name}
             width={128}
             height={128}
-            className="relative z-10 h-full w-full object-contain object-center"
+            className="absolute inset-0 z-10 m-auto h-16 w-16 object-contain"
+            style={imageScale !== 1 ? { transform: `scale(${imageScale})` } : undefined}
           />
         </div>
         <div>
