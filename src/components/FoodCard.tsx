@@ -47,7 +47,7 @@ export default function FoodCard({
             alt={name}
             width={128}
             height={128}
-            className="absolute inset-0 z-10 m-auto h-16 w-16 object-contain"
+            className="absolute inset-0 z-10 m-auto h-20 w-20 object-contain"
             style={imageScale !== 1 ? { transform: `scale(${imageScale})` } : undefined}
           />
         </div>
