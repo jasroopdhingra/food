@@ -23,8 +23,6 @@ const categories = [
   },
 ];
 
-// top offset as % of the canvas height (2200px tall canvas)
-// Tweak these values to align triangle edges perfectly
 const tiers = [
   {
     src: "/images/PYRAMID_TOP.png",
@@ -34,12 +32,12 @@ const tiers = [
   {
     src: "/images/Pyramid-MIDDLE.png",
     alt: "Vegetables and fruit",
-    topPercent: 18, // ~400px / 2200px ≈ 18%
+    topPercent: 25,
   },
   {
     src: "/images/PYRAMID-LAST.png",
     alt: "Whole grains",
-    topPercent: 34, // ~750px / 2200px ≈ 34%
+    topPercent: 48,
   },
 ];
 
@@ -62,44 +60,43 @@ export default function PyramidSection() {
           />
         </div>
 
-        {/* Pyramid column — aspect ratio matches canvas: 1700x2200 = 77.27% */}
-        <div
-          className="relative w-full"
-          style={{ paddingBottom: "129.4%" /* 2200/1700 */ }}
-        >
-          {tiers.map((tier, i) => (
-            <motion.div
-              key={i}
-              className="absolute inset-x-0"
-              style={{ top: `${tier.topPercent}%` }}
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{
-                duration: 0.7,
-                delay: 0.3 + i * 0.2,
-                ease: [0.25, 0.46, 0.45, 0.94],
-              }}
-            >
+        {/* Pyramid column */}
+        <div className="relative ml-auto w-full max-w-xs sm:max-w-sm lg:max-w-md">
+          <div style={{ paddingBottom: "129.4%" }}>
+            {tiers.map((tier, i) => (
               <motion.div
-                animate={{
-                  filter:
-                    activeCategory === null || activeCategory === i
-                      ? "brightness(1)"
-                      : "brightness(0.4)",
-                  scale: activeCategory === i ? 1.03 : 1,
+                key={i}
+                className="absolute inset-x-0"
+                style={{ top: `${tier.topPercent}%` }}
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  duration: 0.7,
+                  delay: 0.3 + i * 0.2,
+                  ease: [0.25, 0.46, 0.45, 0.94],
                 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
               >
-                <Image
-                  src={tier.src}
-                  alt={tier.alt}
-                  width={1700}
-                  height={2200}
-                  className="block h-auto w-full"
-                />
+                <motion.div
+                  animate={{
+                    filter:
+                      activeCategory === null || activeCategory === i
+                        ? "brightness(1)"
+                        : "brightness(0.4)",
+                    scale: activeCategory === i ? 1.03 : 1,
+                  }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                >
+                  <Image
+                    src={tier.src}
+                    alt={tier.alt}
+                    width={1700}
+                    height={2200}
+                    className="block h-auto w-full"
+                  />
+                </motion.div>
               </motion.div>
-            </motion.div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>
