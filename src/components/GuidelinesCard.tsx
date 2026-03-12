@@ -3,7 +3,7 @@
 import { motion } from "motion/react";
 export default function GuidelinesCard() {
   return (
-    <div className="flex flex-col items-center px-6 pt-8 pb-16 md:px-16 md:pt-12 md:pb-24">
+    <div className="flex flex-col items-center px-6 pt-6 pb-10 md:px-16 md:pt-8 md:pb-14">
       <motion.div
         className="relative"
         animate={{

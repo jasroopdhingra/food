@@ -58,7 +58,7 @@ export default function PyramidSection() {
   }, [checkDesktop]);
 
   return (
-    <div id="pyramid" className="py-10 md:py-16">
+    <div id="pyramid" className="py-6 md:py-8">
       <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-0">
         <div className="w-full px-4 sm:px-6 md:px-12 lg:w-[40%] lg:pl-12 lg:pr-8 xl:pl-20 xl:pr-12">
           <Accordion
@@ -69,7 +69,7 @@ export default function PyramidSection() {
         </div>
 
         <div className="w-full px-4 sm:px-6 lg:w-[60%] lg:px-0">
-          <div className="flex w-full flex-col gap-3 lg:gap-0">
+          <div className="mx-auto flex w-full max-w-xl flex-col gap-3 lg:gap-0">
             {tiers.map((tier, i) => (
               <motion.div
                 key={i}
