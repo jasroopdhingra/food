@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "motion/react";
+import Image from "next/image";
+
 export default function GuidelinesCard() {
   return (
     <div className="flex flex-col items-center px-6 pt-4 pb-8 md:px-16 md:pt-6 md:pb-10">
@@ -27,12 +29,13 @@ export default function GuidelinesCard() {
             <br />
             Americans
           </p>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/guidelines-icon.svg"
-                alt="Food pyramid guidelines cover"
-                className="h-auto w-full"
-              />
+          <Image
+            src="/images/guidelines-icon.svg"
+            alt="Food pyramid guidelines cover"
+            width={200}
+            height={200}
+            className="h-auto w-full"
+          />
           <div className="mt-2 flex items-center gap-1">
             <div className="h-3 w-3">
               <svg
@@ -50,15 +53,16 @@ export default function GuidelinesCard() {
         </div>
       </motion.div>
 
-      <motion.a
-        href="#"
-        className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 font-sans text-sm font-medium text-white backdrop-blur-sm transition-all hover:bg-white/20"
-        whileHover={{ scale: 1.03 }}
-        whileTap={{ scale: 0.98 }}
+      <motion.button
+        type="button"
+        disabled
+        className="mt-8 inline-flex cursor-not-allowed items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 font-sans text-sm font-medium text-white/50 backdrop-blur-sm"
+        whileHover={{ scale: 1 }}
+        aria-label="Download the guidelines (coming soon)"
       >
-        <span>Download the guidelines</span>
+        <span>Download coming soon</span>
         <span className="inline-block">→</span>
-      </motion.a>
+      </motion.button>
     </div>
   );
 }

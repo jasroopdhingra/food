@@ -7,6 +7,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+function prefersReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 export default function SmoothScroll({
   children,
 }: {
@@ -18,16 +22,27 @@ export default function SmoothScroll({
   const handleAnchorClick = useCallback((e: MouseEvent) => {
     const target = e.target as HTMLElement;
     const anchor = target.closest("a[href^='#']");
-    if (!anchor || !lenisRef.current) return;
+    if (!anchor) return;
 
     const href = anchor.getAttribute("href");
     if (!href || href === "#") return;
 
     e.preventDefault();
-    lenisRef.current.scrollTo(href, { offset: 0, duration: 1.2 });
+
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(href, { offset: 0, duration: 1.2 });
+    } else {
+      const el = document.querySelector(href);
+      el?.scrollIntoView({ behavior: "auto" });
+    }
   }, []);
 
   useEffect(() => {
+    if (prefersReducedMotion()) {
+      document.addEventListener("click", handleAnchorClick);
+      return () => document.removeEventListener("click", handleAnchorClick);
+    }
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -53,6 +68,7 @@ export default function SmoothScroll({
         gsap.ticker.remove(rafCallbackRef.current);
       }
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, [handleAnchorClick]);
 

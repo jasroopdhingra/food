@@ -21,47 +21,47 @@ const foodCards = [
   {
     name: "Kiwi",
     category: "Vegetable and Fruit",
-    image: "/images/kiwi.png",
-    position: "left-[10%] top-[52%]",
+    image: "/images/kiwi.svg",
+    position: "left-[8%] top-[50%]",
     floatDuration: 3.2,
     floatDelay: 0,
   },
   {
     name: "Salmon",
     category: "Protein and Fats",
-    image: "/images/salmon.png",
+    image: "/images/salmon.svg",
     position: "right-[8%] top-[50%]",
     floatDuration: 3.8,
     floatDelay: 0.5,
   },
   {
+    name: "Chicken Breast",
+    category: "Protein and Fats",
+    image: "/images/chicken.svg",
+    position: "left-[25%] top-[65%]",
+    floatDuration: 4.0,
+    floatDelay: 0.3,
+  },
+  {
     name: "Beans",
     category: "Vegetable and Fruit",
-    image: "/images/beans.png",
+    image: "/images/beans.svg",
     position: "right-[25%] top-[65%]",
     floatDuration: 3.5,
     floatDelay: 1.0,
   },
   {
-    name: "Chicken Breast",
-    category: "Protein and Fats",
-    image: "/images/chicken.png",
-    position: "left-[5%] top-[74%]",
-    floatDuration: 4.0,
-    floatDelay: 0.3,
-  },
-  {
     name: "Brown Rice",
     category: "Whole Grain",
-    image: "/images/rice.png",
-    position: "left-[30%] top-[80%]",
+    image: "/images/rice.svg",
+    position: "left-[5%] top-[78%]",
     floatDuration: 3.6,
     floatDelay: 0.8,
   },
   {
     name: "Broccoli",
     category: "Vegetable and Fruit",
-    image: "/images/broccoli.png",
+    image: "/images/broccoli.svg",
     position: "right-[5%] top-[78%]",
     floatDuration: 3.3,
     floatDelay: 1.2,
@@ -77,7 +77,10 @@ export default function Hero() {
     if (!cardsContainerRef.current || !sectionRef.current) return;
 
     const isDesktop = window.matchMedia("(min-width: 768px)").matches;
-    if (!isDesktop) return;
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (!isDesktop || reducedMotion) return;
 
     const cards =
       cardsContainerRef.current.querySelectorAll(".food-card-wrapper");

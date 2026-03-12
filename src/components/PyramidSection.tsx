@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "motion/react";
+import Image from "next/image";
 import Accordion from "./Accordion";
 
 const categories = [
@@ -24,16 +25,22 @@ const categories = [
 
 const tiers = [
   {
-    src: "/images/tier-protein.png",
+    src: "/pyramid/PYRAMID-TOP.png",
     alt: "Protein and healthy fats: steak, salmon, avocado, shrimp, nuts",
+    width: 800,
+    height: 400,
   },
   {
-    src: "/images/tier-vegetables.png",
+    src: "/pyramid/PYRAMID-MID.png",
     alt: "Vegetables and fruit: artichoke, onion, cauliflower, eggplant, tomato",
+    width: 800,
+    height: 400,
   },
   {
-    src: "/images/tier-grains.png",
+    src: "/pyramid/PYRAMID-BOTTOM.png",
     alt: "Whole grains: rice bowl, wheat, seeds, beans",
+    width: 800,
+    height: 400,
   },
 ];
 
@@ -68,18 +75,19 @@ export default function PyramidSection() {
               >
                 <motion.div
                   animate={{
-                    opacity:
+                    filter:
                       activeCategory === null || activeCategory === i
-                        ? 1
-                        : 0.35,
+                        ? "brightness(1)"
+                        : "brightness(0.35)",
                     scale: activeCategory === i ? 1.02 : 1,
                   }}
                   transition={{ duration: 0.4, ease: "easeOut" }}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={tier.src}
                     alt={tier.alt}
+                    width={tier.width}
+                    height={tier.height}
                     className="block h-auto w-full"
                     style={{ mixBlendMode: "lighten" }}
                   />

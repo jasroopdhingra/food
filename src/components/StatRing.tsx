@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "motion/react";
@@ -9,17 +9,39 @@ const RADIUS = 90;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 const TARGET_PERCENT = 60;
 
+const noopSubscribe = () => () => {};
+
+function useReducedMotion() {
+  return useSyncExternalStore(
+    noopSubscribe,
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    () => false,
+  );
+}
+
 export default function StatRing() {
+  const reducedMotion = useReducedMotion();
   const sectionRef = useRef<HTMLDivElement>(null);
   const circleRef = useRef<SVGCircleElement>(null);
   const triggerRef = useRef<ScrollTrigger | null>(null);
-  const [displayPercent, setDisplayPercent] = useState(0);
-  const [textVisible, setTextVisible] = useState(false);
+  const [displayPercent, setDisplayPercent] = useState(
+    reducedMotion ? TARGET_PERCENT : 0,
+  );
+  const [textVisible, setTextVisible] = useState(reducedMotion);
 
   useEffect(() => {
     if (!sectionRef.current || !circleRef.current) return;
 
     const circle = circleRef.current;
+
+    if (reducedMotion) {
+      const offset =
+        CIRCUMFERENCE - (TARGET_PERCENT / 100) * CIRCUMFERENCE;
+      circle.style.strokeDasharray = `${CIRCUMFERENCE}`;
+      circle.style.strokeDashoffset = `${offset}`;
+      return;
+    }
+
     circle.style.strokeDasharray = `${CIRCUMFERENCE}`;
     circle.style.strokeDashoffset = `${CIRCUMFERENCE}`;
 
@@ -55,7 +77,7 @@ export default function StatRing() {
     return () => {
       triggerRef.current?.kill();
     };
-  }, []);
+  }, [reducedMotion]);
 
   return (
     <section

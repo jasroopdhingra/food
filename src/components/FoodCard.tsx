@@ -43,7 +43,7 @@ export default function FoodCard({
           alt={name}
           width={96}
           height={96}
-          className="h-12 w-12 flex-shrink-0 object-contain"
+          className="h-16 w-16 flex-shrink-0 object-contain"
         />
         <div>
           <p className="font-sans text-sm font-semibold text-green-dark">
