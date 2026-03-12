@@ -45,7 +45,7 @@ export default function FoodCard({
             alt={name}
             width={128}
             height={128}
-            className="relative z-10 h-16 w-16 object-contain object-center"
+            className="relative z-10 h-full w-full object-contain object-center"
           />
         </div>
         <div>
