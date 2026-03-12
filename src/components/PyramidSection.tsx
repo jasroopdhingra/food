@@ -26,15 +26,18 @@ const categories = [
 const tiers = [
   {
     src: "/images/PYRAMID_TOP.png",
-    alt: "Protein and healthy fats: steak, salmon, avocado, shrimp, nuts",
+    alt: "Protein and healthy fats",
+    width: "100%",
   },
   {
     src: "/images/Pyramid-MIDDLE.png",
-    alt: "Vegetables and fruit: artichoke, onion, cauliflower, eggplant, tomato",
+    alt: "Vegetables and fruit",
+    width: "75%",
   },
   {
     src: "/images/PYRAMID-LAST.png",
-    alt: "Whole grains: rice bowl, wheat, seeds, beans",
+    alt: "Whole grains",
+    width: "100%",
   },
 ];
 
@@ -60,7 +63,8 @@ export default function PyramidSection() {
           {tiers.map((tier, i) => (
             <motion.div
               key={i}
-              className={`w-full ${i > 0 ? "-mt-[32%]" : ""}`}
+              className={`${i > 0 ? "-mt-[30%]" : ""}`}
+              style={{ width: tier.width }}
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{
