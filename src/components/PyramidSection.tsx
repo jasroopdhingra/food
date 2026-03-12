@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import Accordion from "./Accordion";
@@ -23,23 +23,35 @@ const categories = [
   },
 ];
 
+const USER_OVERRIDE_MS = 3000;
+
 export default function PyramidSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [activeCategory, setActiveCategory] = useState(0);
+  const [activeCategory, setActiveCategory] = useState<number | null>(0);
+  const userOverrideUntil = useRef(0);
+
+  const handleManualToggle = useCallback((index: number | null) => {
+    userOverrideUntil.current = Date.now() + USER_OVERRIDE_MS;
+    setActiveCategory(index);
+  }, []);
 
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
     const handleScroll = () => {
-      const rect = section.getBoundingClientRect();
-      const sectionHeight = rect.height;
-      const scrolledInto = -rect.top;
-      const progress = Math.max(0, Math.min(1, scrolledInto / sectionHeight));
+      if (Date.now() < userOverrideUntil.current) return;
 
-      if (progress < 0.33) setActiveCategory(0);
-      else if (progress < 0.66) setActiveCategory(1);
-      else setActiveCategory(2);
+      const rect = section.getBoundingClientRect();
+      const scrolledInto = -rect.top;
+      const progress = Math.max(0, Math.min(1, scrolledInto / rect.height));
+
+      let next: number;
+      if (progress < 0.33) next = 0;
+      else if (progress < 0.66) next = 1;
+      else next = 2;
+
+      setActiveCategory(next);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -59,6 +71,7 @@ export default function PyramidSection() {
             items={categories}
             defaultOpen={0}
             activeIndex={activeCategory}
+            onActiveChange={handleManualToggle}
             compact
           />
         </div>

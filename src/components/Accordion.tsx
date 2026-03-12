@@ -30,7 +30,7 @@ export default function Accordion({
   const toggle = (index: number) => {
     const next = openIndex === index ? null : index;
     if (!controlled) setInternalIndex(next);
-    onActiveChange?.(next);
+    if (onActiveChange) onActiveChange(next);
   };
 
   return (
