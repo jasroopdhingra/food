@@ -28,13 +28,13 @@ export default function PyramidSection() {
       id="pyramid"
       className="overflow-hidden pl-4 pr-0 pb-10 sm:pl-6 sm:pb-14 md:pl-12 lg:pl-16 lg:pb-12"
     >
-      <div className="grid grid-cols-[minmax(0,14rem)_1fr] items-start gap-4 sm:grid-cols-[minmax(0,17rem)_1fr] sm:gap-6 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-10">
+      <div className="grid grid-cols-[minmax(0,18rem)_1fr] items-center gap-4 sm:grid-cols-[minmax(0,22rem)_1fr] sm:gap-6 lg:grid-cols-[minmax(0,26rem)_1fr] lg:gap-10">
         <div className="pt-2 sm:pt-4 lg:pt-6">
           <Accordion items={categories} defaultOpen={0} compact />
         </div>
 
         <motion.div
-          className="ml-auto -mt-10 w-full max-w-[56rem] sm:-mt-14 sm:max-w-[68rem] lg:-mt-16 lg:max-w-[84rem]"
+          className="ml-auto -mt-16 w-full max-w-[37rem] sm:-mt-20 sm:max-w-[45rem] lg:-mt-24 lg:max-w-[56rem]"
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{
