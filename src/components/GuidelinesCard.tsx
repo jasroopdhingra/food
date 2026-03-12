@@ -10,7 +10,6 @@ export default function GuidelinesCard() {
         className="relative"
         animate={{
           y: [0, -12, 0],
-          rotate: [-8, -5, -8],
         }}
         transition={{
           duration: 4,
@@ -24,22 +23,11 @@ export default function GuidelinesCard() {
         <Image
           src="/images/guidelines-icon.svg"
           alt="Food pyramid guidelines cover"
-          width={200}
-          height={200}
-          className="h-auto w-48 md:w-56"
+          width={300}
+          height={300}
+          className="h-auto w-64 md:w-72"
         />
       </motion.div>
-
-      <motion.button
-        type="button"
-        disabled
-        className="mt-8 inline-flex cursor-not-allowed items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 font-sans text-sm font-medium text-white/50 backdrop-blur-sm"
-        whileHover={{ scale: 1 }}
-        aria-label="Download the guidelines (coming soon)"
-      >
-        <span>Download coming soon</span>
-        <span className="inline-block">→</span>
-      </motion.button>
     </div>
   );
 }
