@@ -21,36 +21,13 @@ export default function GuidelinesCard() {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, amount: 0.5 }}
       >
-        <div className="w-48 overflow-hidden rounded-xl bg-white p-4 shadow-2xl md:w-56">
-          <p className="mb-2 font-sans text-xs font-semibold leading-tight text-green-dark">
-            United States
-            <br />
-            Dietary Guidelines For
-            <br />
-            Americans
-          </p>
-          <Image
-            src="/images/guidelines-icon.svg"
-            alt="Food pyramid guidelines cover"
-            width={200}
-            height={200}
-            className="h-auto w-full"
-          />
-          <div className="mt-2 flex items-center gap-1">
-            <div className="h-3 w-3">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                className="text-green-dark"
-              >
-                <rect x="3" y="3" width="7" height="4" fill="currentColor" />
-                <rect x="3" y="9" width="18" height="2" fill="currentColor" />
-                <rect x="3" y="13" width="18" height="2" fill="currentColor" />
-                <rect x="3" y="17" width="18" height="2" fill="currentColor" />
-              </svg>
-            </div>
-          </div>
-        </div>
+        <Image
+          src="/images/guidelines-icon.svg"
+          alt="Food pyramid guidelines cover"
+          width={200}
+          height={200}
+          className="h-auto w-48 md:w-56"
+        />
       </motion.div>
 
       <motion.button
