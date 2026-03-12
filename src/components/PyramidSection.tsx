@@ -44,10 +44,10 @@ export default function PyramidSection() {
   return (
     <div
       id="pyramid"
-      className="overflow-hidden pl-4 pr-0 pb-10 sm:pl-6 sm:pb-14 md:pl-12 lg:pl-16 lg:pb-12"
+      className="overflow-hidden pl-4 pb-10 sm:pl-6 sm:pb-14 md:pl-12 lg:pl-16 lg:pb-12 pr-0"
     >
       <div className="grid grid-cols-[minmax(0,14rem)_1fr] items-start gap-4 sm:grid-cols-[minmax(0,17rem)_1fr] sm:gap-6 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-10">
-        <div className="pt-4 sm:pt-8 lg:pt-6">
+        <div className="pt-0">
           <Accordion
             items={categories}
             defaultOpen={0}
@@ -60,7 +60,7 @@ export default function PyramidSection() {
           {tiers.map((tier, i) => (
             <motion.div
               key={i}
-              className={`w-full ${i > 0 ? "-mt-[18%]" : ""}`}
+              className={`w-full ${i > 0 ? "-mt-[32%]" : ""}`}
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{
