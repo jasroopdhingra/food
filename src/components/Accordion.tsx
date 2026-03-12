@@ -47,7 +47,7 @@ export default function Accordion({
               onClick={() => toggle(i)}
               className={`flex w-full items-center justify-between text-left ${
                 compact
-                  ? "px-3 py-2.5 sm:px-5 sm:py-4"
+                  ? "px-4 py-3 sm:px-5 sm:py-4"
                   : "px-5 py-4"
               }`}
               aria-expanded={isOpen}
@@ -55,7 +55,7 @@ export default function Accordion({
             >
               <span
                 className={`font-sans font-semibold text-white ${
-                  compact ? "text-xs sm:text-base md:text-lg" : "text-base md:text-lg"
+                  compact ? "text-sm sm:text-base md:text-lg" : "text-base md:text-lg"
                 }`}
               >
                 {item.title}
@@ -90,7 +90,7 @@ export default function Accordion({
                     <p
                       className={`font-sans leading-relaxed text-white/80 ${
                         compact
-                          ? "text-[11px] sm:text-sm md:text-base"
+                          ? "text-xs sm:text-sm md:text-base"
                           : "text-sm md:text-base"
                       }`}
                     >

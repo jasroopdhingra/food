@@ -30,10 +30,10 @@ export default function ThreeSteps() {
   return (
     <div
       ref={ref}
-      className="px-4 pt-6 pb-5 sm:px-6 sm:pb-6 md:px-16 md:pt-8 md:pb-6"
+      className="px-4 pt-6 pb-8 sm:px-6 sm:pb-10 md:px-16 md:pt-8 md:pb-12"
     >
       <motion.h2
-        className="max-w-lg font-serif text-2xl font-normal leading-snug text-white sm:text-3xl md:text-4xl md:leading-snug"
+        className="max-w-xl font-serif text-3xl font-normal leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}

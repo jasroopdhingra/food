@@ -46,8 +46,8 @@ export default function PyramidSection() {
       id="pyramid"
       className="relative overflow-hidden px-4 pt-2 pb-14 sm:px-6 sm:pb-20 md:px-12 lg:px-16 lg:pt-4 lg:pb-12"
     >
-      <div className="relative min-h-[30rem] sm:min-h-[35rem] lg:grid lg:min-h-[34rem] lg:grid-cols-[minmax(0,20rem)_1fr] lg:items-center lg:gap-12">
-        <div className="relative z-20 w-[min(50vw,14rem)] max-w-[14rem] pt-8 sm:w-[14rem] sm:max-w-[14rem] sm:pt-12 lg:w-full lg:max-w-sm lg:pt-0">
+      <div className="relative min-h-[32rem] sm:min-h-[38rem] lg:grid lg:min-h-[42rem] lg:grid-cols-[minmax(0,22rem)_1fr] lg:items-start lg:gap-12">
+        <div className="relative z-20 w-[min(55vw,17rem)] max-w-[17rem] pt-8 sm:w-[17rem] sm:max-w-[17rem] sm:pt-12 lg:w-full lg:max-w-md lg:pt-6">
           <Accordion
             items={categories}
             defaultOpen={0}
@@ -56,11 +56,11 @@ export default function PyramidSection() {
           />
         </div>
 
-        <div className="pointer-events-none absolute top-0 right-[-6rem] z-10 flex w-[24rem] flex-col items-center sm:right-[-4rem] sm:w-[28rem] lg:relative lg:right-auto lg:mx-auto lg:w-full lg:max-w-sm xl:max-w-md">
+        <div className="pointer-events-none absolute top-0 right-0 z-10 flex w-[32rem] flex-col items-end sm:w-[36rem] lg:top-2 lg:w-[55%] lg:max-w-none">
           {tiers.map((tier, i) => (
             <motion.div
               key={i}
-              className={`w-full ${i > 0 ? "-mt-2 sm:-mt-3" : ""}`}
+              className={`w-full ${i > 0 ? "-mt-4 sm:-mt-6" : ""}`}
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.3 }}
