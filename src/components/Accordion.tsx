@@ -12,12 +12,14 @@ interface AccordionProps {
   items: AccordionItem[];
   defaultOpen?: number;
   onActiveChange?: (index: number | null) => void;
+  compact?: boolean;
 }
 
 export default function Accordion({
   items,
   defaultOpen = 0,
   onActiveChange,
+  compact = false,
 }: AccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(defaultOpen);
 
@@ -28,7 +30,7 @@ export default function Accordion({
   };
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className={`flex flex-col ${compact ? "gap-2 sm:gap-3" : "gap-3"}`}>
       {items.map((item, i) => {
         const isOpen = openIndex === i;
         const panelId = `accordion-panel-${i}`;
@@ -36,20 +38,32 @@ export default function Accordion({
         return (
           <div
             key={i}
-            className="overflow-hidden rounded-2xl bg-white/10 backdrop-blur-sm transition-colors duration-200 hover:bg-white/15"
+            className={`overflow-hidden bg-white/10 backdrop-blur-sm transition-colors duration-200 hover:bg-white/15 ${
+              compact ? "rounded-xl sm:rounded-2xl" : "rounded-2xl"
+            }`}
           >
             <button
               id={buttonId}
               onClick={() => toggle(i)}
-              className="flex w-full items-center justify-between px-5 py-4 text-left"
+              className={`flex w-full items-center justify-between text-left ${
+                compact
+                  ? "px-3 py-2.5 sm:px-5 sm:py-4"
+                  : "px-5 py-4"
+              }`}
               aria-expanded={isOpen}
               aria-controls={panelId}
             >
-              <span className="font-sans text-base font-semibold text-white md:text-lg">
+              <span
+                className={`font-sans font-semibold text-white ${
+                  compact ? "text-xs sm:text-base md:text-lg" : "text-base md:text-lg"
+                }`}
+              >
                 {item.title}
               </span>
               <motion.span
-                className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-white/30 text-white"
+                className={`flex flex-shrink-0 items-center justify-center rounded-full border border-white/30 text-white ${
+                  compact ? "h-5 w-5 text-xs sm:h-7 sm:w-7 sm:text-base" : "h-7 w-7"
+                }`}
                 animate={{ rotate: isOpen ? 45 : 0 }}
                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
                 aria-hidden="true"
@@ -72,8 +86,14 @@ export default function Accordion({
                     opacity: { duration: 0.2 },
                   }}
                 >
-                  <div className="px-5 pb-5">
-                    <p className="font-sans text-sm leading-relaxed text-white/80 md:text-base">
+                  <div className={compact ? "px-3 pb-3 sm:px-5 sm:pb-5" : "px-5 pb-5"}>
+                    <p
+                      className={`font-sans leading-relaxed text-white/80 ${
+                        compact
+                          ? "text-[11px] sm:text-sm md:text-base"
+                          : "text-sm md:text-base"
+                      }`}
+                    >
                       {item.content}
                     </p>
                   </div>

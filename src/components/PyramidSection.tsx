@@ -29,18 +29,21 @@ const tiers = [
     alt: "Protein and healthy fats: steak, salmon, avocado, shrimp, nuts",
     width: 800,
     height: 400,
+    sizeClass: "w-[76%] lg:w-[68%]",
   },
   {
     src: "/pyramid/PYRAMID-MID.png",
     alt: "Vegetables and fruit: artichoke, onion, cauliflower, eggplant, tomato",
     width: 800,
     height: 400,
+    sizeClass: "w-[95%] lg:w-[86%]",
   },
   {
     src: "/pyramid/PYRAMID-BOTTOM.png",
     alt: "Whole grains: rice bowl, wheat, seeds, beans",
     width: 800,
     height: 400,
+    sizeClass: "w-[70%] lg:w-[62%]",
   },
 ];
 
@@ -48,22 +51,26 @@ export default function PyramidSection() {
   const [activeCategory, setActiveCategory] = useState<number | null>(0);
 
   return (
-    <div id="pyramid" className="py-4 md:py-6">
-      <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-8">
-        <div className="w-full px-4 sm:px-6 md:px-12 lg:w-[42%] lg:pl-12 lg:pr-4 xl:pl-20 xl:pr-8">
+    <div
+      id="pyramid"
+      className="relative overflow-hidden px-4 pt-2 pb-14 sm:px-6 sm:pb-20 md:px-12 lg:px-16 lg:pt-4 lg:pb-12"
+    >
+      <div className="relative min-h-[30rem] sm:min-h-[35rem] lg:grid lg:min-h-[34rem] lg:grid-cols-[minmax(0,18rem)_1fr] lg:items-center lg:gap-8">
+        <div className="relative z-20 w-[min(44vw,13rem)] max-w-[13rem] pt-24 sm:w-[13.5rem] sm:max-w-[13.5rem] sm:pt-28 lg:w-full lg:max-w-sm lg:pt-0">
           <Accordion
             items={categories}
             defaultOpen={0}
             onActiveChange={setActiveCategory}
+            compact
           />
         </div>
 
-        <div className="w-full px-4 sm:px-6 lg:w-[58%] lg:px-8">
-          <div className="mx-auto max-w-xs sm:max-w-sm lg:max-w-sm">
+        <div className="pointer-events-none absolute top-0 right-[-8.5rem] z-10 flex w-[28rem] flex-col items-end sm:right-[-6.5rem] sm:w-[31rem] lg:relative lg:right-auto lg:ml-auto lg:w-[38rem] xl:w-[42rem]">
+          <div className="w-full">
             {tiers.map((tier, i) => (
               <motion.div
                 key={i}
-                className="-mt-1 first:mt-0"
+                className={`${tier.sizeClass} ml-auto ${i === 0 ? "" : "-mt-4 sm:-mt-6 lg:-mt-8"}`}
                 initial={{ opacity: 0, x: 40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.3 }}

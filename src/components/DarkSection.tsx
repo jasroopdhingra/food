@@ -10,7 +10,7 @@ export default function DarkSection({
   return (
     <section className="bg-white-warm px-0">
       <motion.div
-        className="rounded-2xl bg-dark-section md:rounded-3xl"
+        className="overflow-hidden rounded-2xl bg-dark-section md:rounded-3xl"
         initial={{ opacity: 0.9, scale: 0.96 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, amount: 0.05 }}
