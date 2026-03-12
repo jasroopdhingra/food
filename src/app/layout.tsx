@@ -18,9 +18,6 @@ export const metadata: Metadata = {
   title: "Real Food | A Radical New Approach To Health In America",
   description:
     "The new food pyramid puts real, whole, nutrient-dense foods back where they belong: at the center of health.",
-  icons: {
-    icon: "/icon.png",
-  },
 };
 
 export default function RootLayout({
