@@ -25,8 +25,8 @@ const foodCards = [
     position: "left-[8%] top-[50%]",
     floatDuration: 3.2,
     floatDelay: 0,
-    imageOffsetX: -2,
-    imageOffsetY: -4,
+    imageOffsetX: 2,
+    imageOffsetY: 2,
   },
   {
     name: "Salmon",
@@ -69,8 +69,8 @@ const foodCards = [
     position: "right-[5%] top-[78%]",
     floatDuration: 3.3,
     floatDelay: 1.2,
-    imageOffsetX: -2,
-    imageOffsetY: -4,
+    imageOffsetX: 2,
+    imageOffsetY: 2,
   },
 ];
 
