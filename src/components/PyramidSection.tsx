@@ -27,17 +27,14 @@ const tiers = [
   {
     src: "/images/PYRAMID_TOP.png",
     alt: "Protein and healthy fats",
-    width: "100%",
   },
   {
     src: "/images/Pyramid-MIDDLE.png",
     alt: "Vegetables and fruit",
-    width: "75%",
   },
   {
     src: "/images/PYRAMID-LAST.png",
     alt: "Whole grains",
-    width: "100%",
   },
 ];
 
@@ -50,6 +47,7 @@ export default function PyramidSection() {
       className="overflow-hidden pl-4 pb-10 sm:pl-6 sm:pb-14 md:pl-12 lg:pl-16 lg:pb-12 pr-0"
     >
       <div className="grid grid-cols-[minmax(0,14rem)_1fr] items-start gap-4 sm:grid-cols-[minmax(0,17rem)_1fr] sm:gap-6 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-10">
+        {/* Accordion column */}
         <div className="pt-0">
           <Accordion
             items={categories}
@@ -59,12 +57,15 @@ export default function PyramidSection() {
           />
         </div>
 
-        <div className="ml-auto flex w-full max-w-[14rem] flex-col items-end sm:max-w-[18rem] lg:max-w-[22rem]">
+        {/* Pyramid column — extends to right edge */}
+        <div className="relative flex flex-col items-end">
           {tiers.map((tier, i) => (
             <motion.div
               key={i}
-              className={`${i > 0 ? "-mt-[30%]" : ""}`}
-              style={{ width: tier.width }}
+              className="w-full"
+              style={{
+                marginTop: i > 0 ? "-28%" : 0,
+              }}
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{
