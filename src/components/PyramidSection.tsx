@@ -57,14 +57,14 @@ export default function PyramidSection() {
           />
         </div>
 
-        {/* Pyramid column — extends to right edge */}
-        <div className="relative flex flex-col items-end">
+        {/* Pyramid column */}
+        <div className="relative flex flex-col items-end overflow-visible">
           {tiers.map((tier, i) => (
             <motion.div
               key={i}
               className="w-full"
               style={{
-                marginTop: i > 0 ? "-28%" : 0,
+                marginTop: i > 0 ? "-38%" : 0,
               }}
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -88,7 +88,7 @@ export default function PyramidSection() {
                   src={tier.src}
                   alt={tier.alt}
                   width={800}
-                  height={500}
+                  height={800}
                   className="block h-auto w-full"
                 />
               </motion.div>
