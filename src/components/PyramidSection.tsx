@@ -34,7 +34,7 @@ export default function PyramidSection() {
         </div>
 
         <motion.div
-          className="ml-auto -mt-4 w-full max-w-[28rem] sm:-mt-6 sm:max-w-[34rem] lg:-mt-8 lg:max-w-[42rem]"
+          className="ml-auto -mt-10 w-full max-w-[56rem] sm:-mt-14 sm:max-w-[68rem] lg:-mt-16 lg:max-w-[84rem]"
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{
