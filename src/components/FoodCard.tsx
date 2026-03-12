@@ -38,13 +38,14 @@ export default function FoodCard({
         whileHover={{ scale: 1.05, boxShadow: "0 8px 30px rgba(0,0,0,0.12)" }}
         transition={{ type: "spring", stiffness: 400, damping: 25 }}
       >
-        <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center">
+        <div className="relative flex h-16 w-16 flex-shrink-0 items-end justify-center">
+          <div className="absolute bottom-0 left-1/2 h-8 w-8 -translate-x-1/2 rounded-lg bg-dark-section" />
           <Image
             src={image}
             alt={name}
             width={128}
             height={128}
-            className="h-full w-full object-contain"
+            className="relative z-10 h-full w-full object-contain"
           />
         </div>
         <div>
