@@ -49,9 +49,7 @@ npm start
 
 ## Next Steps
 
-- **More food images.** Only 6 food assets exist. Adding 15-20 more (organized by category) would enable a full food showcase grid like realfood.gov.
-- **Old vs. new pyramid comparison.** A side-by-side of the 1992 pyramid and the new one would strengthen the narrative arc. Needs the old pyramid asset.
-- **Mobile marquee speed tuning.** The 25s animation duration works well on desktop but could be slower on narrow viewports where fewer cards are visible.
-- **Pyramid section alignment.** On desktop, the three accordion items could be vertically spaced to precisely align with the pyramid's three visual sections (protein/top, vegetables/middle, grains/bottom).
+- **last section** wanted to add a CTA with eat real food, but would probably add something in between the previous statement and the last CTA so its not too text clunky
+- **More food images.** Only 6 food assets exist. Adding 15-20 more would allow for cooler animations.
 - **Accessibility audit.** ARIA attributes and reduced-motion support are in place, but a full screen-reader and keyboard navigation audit would be valuable.
 - **Performance.** Consider lazy-loading the pyramid and guidelines images since they're below the fold. The GSAP bundle could be code-split.
