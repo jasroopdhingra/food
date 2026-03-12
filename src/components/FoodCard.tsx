@@ -11,6 +11,8 @@ interface FoodCardProps {
   floatDuration?: number;
   floatDelay?: number;
   imageScale?: number;
+  imageOffsetX?: number;
+  imageOffsetY?: number;
 }
 
 export default function FoodCard({
@@ -20,6 +22,8 @@ export default function FoodCard({
   floatDuration = 3,
   floatDelay = 0,
   imageScale = 1,
+  imageOffsetX = 0,
+  imageOffsetY = 0,
 }: FoodCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, amount: 0.5 });
@@ -48,7 +52,11 @@ export default function FoodCard({
             width={128}
             height={128}
             className="absolute inset-0 z-10 m-auto h-20 w-20 object-contain"
-            style={imageScale !== 1 ? { transform: `scale(${imageScale})` } : undefined}
+            style={
+              imageScale !== 1 || imageOffsetX !== 0 || imageOffsetY !== 0
+                ? { transform: `scale(${imageScale}) translate(${imageOffsetX}px, ${imageOffsetY}px)` }
+                : undefined
+            }
           />
         </div>
         <div>
