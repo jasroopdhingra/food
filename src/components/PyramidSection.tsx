@@ -23,18 +23,23 @@ const categories = [
   },
 ];
 
+// top offset as % of the canvas height (2200px tall canvas)
+// Tweak these values to align triangle edges perfectly
 const tiers = [
   {
     src: "/images/PYRAMID_TOP.png",
     alt: "Protein and healthy fats",
+    topPercent: 0,
   },
   {
     src: "/images/Pyramid-MIDDLE.png",
     alt: "Vegetables and fruit",
+    topPercent: 18, // ~400px / 2200px ≈ 18%
   },
   {
     src: "/images/PYRAMID-LAST.png",
     alt: "Whole grains",
+    topPercent: 34, // ~750px / 2200px ≈ 34%
   },
 ];
 
@@ -57,15 +62,16 @@ export default function PyramidSection() {
           />
         </div>
 
-        {/* Pyramid column */}
-        <div className="relative flex flex-col items-end overflow-visible">
+        {/* Pyramid column — aspect ratio matches canvas: 1700x2200 = 77.27% */}
+        <div
+          className="relative w-full"
+          style={{ paddingBottom: "129.4%" /* 2200/1700 */ }}
+        >
           {tiers.map((tier, i) => (
             <motion.div
               key={i}
-              className="w-full"
-              style={{
-                marginTop: i > 0 ? "-38%" : 0,
-              }}
+              className="absolute inset-x-0"
+              style={{ top: `${tier.topPercent}%` }}
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{
@@ -87,8 +93,8 @@ export default function PyramidSection() {
                 <Image
                   src={tier.src}
                   alt={tier.alt}
-                  width={800}
-                  height={800}
+                  width={1700}
+                  height={2200}
                   className="block h-auto w-full"
                 />
               </motion.div>
