@@ -56,11 +56,11 @@ export default function PyramidSection() {
           />
         </div>
 
-        <div className="flex flex-col items-end">
+        <div className="ml-auto flex w-full max-w-[14rem] flex-col items-end sm:max-w-[18rem] lg:max-w-[22rem]">
           {tiers.map((tier, i) => (
             <motion.div
               key={i}
-              className={`w-full ${i > 0 ? "-mt-3 sm:-mt-5" : ""}`}
+              className={`w-full ${i > 0 ? "-mt-[18%]" : ""}`}
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{
