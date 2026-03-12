@@ -44,7 +44,7 @@ const foodCards = [
   },
   {
     name: "Beans",
-    category: "Vegetable and Fruit",
+    category: "Protein and Fats",
     image: "/images/BEANS-Picsart-BackgroundRemover.png",
     position: "right-[25%] top-[65%]",
     floatDuration: 3.5,
