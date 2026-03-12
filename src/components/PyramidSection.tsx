@@ -44,7 +44,7 @@ export default function PyramidSection() {
           }}
         >
           <Image
-            src="/images/Group 5.png"
+            src="/images/pyramid-full.png"
             alt="Food pyramid: protein and healthy fats at top, vegetables and fruit in the middle, whole grains at the bottom"
             width={630}
             height={815}
