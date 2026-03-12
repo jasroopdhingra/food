@@ -39,7 +39,7 @@ export default function FoodCard({
         transition={{ type: "spring", stiffness: 400, damping: 25 }}
       >
         <div className="relative flex h-16 w-16 flex-shrink-0 items-end justify-center">
-          <div className="absolute bottom-0 left-1/2 h-8 w-8 -translate-x-1/2 rounded-lg bg-dark-section" />
+          <div className="absolute bottom-0 left-1/2 h-10 w-10 -translate-x-1/2 rounded-lg bg-cream" />
           <Image
             src={image}
             alt={name}
