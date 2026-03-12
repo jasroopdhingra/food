@@ -47,6 +47,7 @@ export default function Manifesto() {
       <p
         ref={textRef}
         className="mx-auto max-w-4xl text-center font-serif text-2xl font-bold leading-snug text-green-dark sm:text-3xl md:text-5xl md:leading-snug lg:text-6xl lg:leading-tight"
+        style={{ textWrap: "balance" }}
       >
         {manifestoText.split(" ").map((word, i) => (
           <span key={i} className="manifesto-word inline">

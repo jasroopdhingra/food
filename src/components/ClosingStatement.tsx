@@ -50,7 +50,10 @@ export default function ClosingStatement() {
       ref={sectionRef}
       className="flex min-h-[50vh] items-center bg-white-warm px-4 py-12 sm:px-6 md:min-h-[60vh] md:px-8 md:py-24"
     >
-      <p className="mx-auto max-w-4xl text-center font-serif text-2xl font-bold leading-snug sm:text-3xl md:text-5xl md:leading-snug lg:text-6xl lg:leading-tight">
+      <p
+        className="mx-auto max-w-4xl text-center font-serif text-2xl font-bold leading-snug sm:text-3xl md:text-5xl md:leading-snug lg:text-6xl lg:leading-tight"
+        style={{ textWrap: "balance" }}
+      >
         {closingText.split(" ").map((word, i) => (
           <span key={i} className="closing-word inline">
             {word}{" "}
