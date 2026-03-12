@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import Accordion from "./Accordion";
@@ -23,81 +22,36 @@ const categories = [
   },
 ];
 
-const tiers = [
-  {
-    src: "/images/PYRAMID_TOP.png",
-    alt: "Protein and healthy fats",
-    topPercent: 0,
-  },
-  {
-    src: "/images/Pyramid-MIDDLE.png",
-    alt: "Vegetables and fruit",
-    topPercent: 25,
-  },
-  {
-    src: "/images/PYRAMID-LAST.png",
-    alt: "Whole grains",
-    topPercent: 48,
-  },
-];
-
 export default function PyramidSection() {
-  const [activeCategory, setActiveCategory] = useState<number | null>(0);
-
   return (
     <div
       id="pyramid"
-      className="overflow-hidden pl-4 pb-10 sm:pl-6 sm:pb-14 md:pl-12 lg:pl-16 lg:pb-12 pr-0"
+      className="overflow-hidden pl-4 pr-0 pb-10 sm:pl-6 sm:pb-14 md:pl-12 lg:pl-16 lg:pb-12"
     >
       <div className="grid grid-cols-[minmax(0,14rem)_1fr] items-start gap-4 sm:grid-cols-[minmax(0,17rem)_1fr] sm:gap-6 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-10">
-        {/* Accordion column */}
-        <div className="pt-0">
-          <Accordion
-            items={categories}
-            defaultOpen={0}
-            onActiveChange={setActiveCategory}
-            compact
-          />
+        <div className="pt-2 sm:pt-4 lg:pt-6">
+          <Accordion items={categories} defaultOpen={0} compact />
         </div>
 
-        {/* Pyramid column */}
-        <div className="relative ml-auto w-full max-w-xs sm:max-w-sm lg:max-w-md">
-          <div style={{ paddingBottom: "129.4%" }}>
-            {tiers.map((tier, i) => (
-              <motion.div
-                key={i}
-                className="absolute inset-x-0"
-                style={{ top: `${tier.topPercent}%` }}
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{
-                  duration: 0.7,
-                  delay: 0.3 + i * 0.2,
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                }}
-              >
-                <motion.div
-                  animate={{
-                    filter:
-                      activeCategory === null || activeCategory === i
-                        ? "brightness(1)"
-                        : "brightness(0.4)",
-                    scale: activeCategory === i ? 1.03 : 1,
-                  }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                >
-                  <Image
-                    src={tier.src}
-                    alt={tier.alt}
-                    width={1700}
-                    height={2200}
-                    className="block h-auto w-full"
-                  />
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+        <motion.div
+          className="ml-auto -mt-4 w-full max-w-[16rem] sm:-mt-6 sm:max-w-[20rem] lg:-mt-8 lg:max-w-[26rem]"
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{
+            duration: 0.7,
+            delay: 0.3,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
+        >
+          <Image
+            src="/images/Group 5.png"
+            alt="Food pyramid: protein and healthy fats at top, vegetables and fruit in the middle, whole grains at the bottom"
+            width={630}
+            height={815}
+            className="block h-auto w-full"
+            priority
+          />
+        </motion.div>
       </div>
     </div>
   );
