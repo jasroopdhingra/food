@@ -44,10 +44,10 @@ export default function PyramidSection() {
   return (
     <div
       id="pyramid"
-      className="relative overflow-hidden pl-4 pr-0 pt-0 pb-14 sm:pl-6 sm:pr-0 sm:pb-20 md:pl-12 md:pr-0 lg:pl-16 lg:pr-0 lg:pt-0 lg:pb-12"
+      className="overflow-hidden pl-4 pr-0 pb-10 sm:pl-6 sm:pb-14 md:pl-12 lg:pl-16 lg:pb-12"
     >
-      <div className="relative min-h-[58rem] sm:min-h-[66rem] lg:grid lg:min-h-[64rem] lg:grid-cols-[minmax(0,22rem)_1fr] lg:items-start lg:gap-12">
-        <div className="relative z-20 w-[min(55vw,17rem)] max-w-[17rem] pt-8 sm:w-[17rem] sm:max-w-[17rem] sm:pt-12 lg:w-full lg:max-w-md lg:pt-6">
+      <div className="grid grid-cols-[minmax(0,14rem)_1fr] items-start gap-4 sm:grid-cols-[minmax(0,17rem)_1fr] sm:gap-6 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-10">
+        <div className="pt-4 sm:pt-8 lg:pt-6">
           <Accordion
             items={categories}
             defaultOpen={0}
@@ -56,11 +56,11 @@ export default function PyramidSection() {
           />
         </div>
 
-        <div className="pointer-events-none absolute -top-16 right-0 z-10 flex w-[32rem] flex-col items-end sm:-top-20 sm:w-[36rem] lg:-top-24 lg:w-[55%] lg:max-w-none">
+        <div className="flex flex-col items-end">
           {tiers.map((tier, i) => (
             <motion.div
               key={i}
-              className={`w-full ${i > 0 ? "-mt-4 sm:-mt-6" : ""}`}
+              className={`w-full ${i > 0 ? "-mt-3 sm:-mt-5" : ""}`}
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{
