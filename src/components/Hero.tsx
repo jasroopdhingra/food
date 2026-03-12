@@ -85,7 +85,7 @@ export default function Hero() {
 
     const isDesktop = window.matchMedia("(min-width: 768px)").matches;
     const reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
+      "(prefers-reduced-motion: reduce)",
     ).matches;
     if (!isDesktop || reducedMotion) return;
 
@@ -118,9 +118,10 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-white-warm min-h-[100vh] md:min-h-[120vh]"
+      id="hero"
+      className="relative overflow-hidden bg-white-warm min-h-[75vh] md:min-h-[120vh]"
     >
-      <div className="flex flex-col items-center pt-16 pb-8 md:pt-32 md:pb-24">
+      <div className="flex flex-col items-center pt-20 pb-8 md:pt-32 md:pb-24">
         <h1 className="max-w-4xl px-6 text-center font-serif text-4xl leading-tight font-normal tracking-tight text-green-dark sm:text-5xl md:text-7xl md:leading-[1.1] lg:text-8xl lg:leading-[1.05]">
           {headlineWords.map((word, i) => (
             <motion.span
@@ -153,9 +154,9 @@ export default function Hero() {
         </motion.a>
       </div>
 
-      {/* Mobile: horizontal scrolling row */}
-      <div className="hide-scrollbar mt-4 overflow-x-auto px-4 pb-8 md:hidden">
-        <div className="flex w-max gap-3">
+      {/* Mobile: 2-column grid */}
+      <div className="px-4 pb-8 md:hidden">
+        <div className="grid grid-cols-2 gap-3">
           {foodCards.map((card, i) => (
             <motion.div
               key={card.name}
@@ -176,6 +177,7 @@ export default function Hero() {
                 imageScale={card.imageScale}
                 imageOffsetX={card.imageOffsetX}
                 imageOffsetY={card.imageOffsetY}
+                compact
               />
             </motion.div>
           ))}

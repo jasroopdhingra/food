@@ -13,6 +13,7 @@ interface FoodCardProps {
   imageScale?: number;
   imageOffsetX?: number;
   imageOffsetY?: number;
+  compact?: boolean;
 }
 
 export default function FoodCard({
@@ -24,46 +25,60 @@ export default function FoodCard({
   imageScale = 1,
   imageOffsetX = 0,
   imageOffsetY = 0,
+  compact = false,
 }: FoodCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, amount: 0.5 });
+  const shouldFloat = floatDuration > 0;
 
   return (
     <motion.div
-      ref={ref}
-      animate={isInView ? { y: [0, -8, 0] } : { y: 0 }}
-      transition={{
-        duration: floatDuration,
-        repeat: isInView ? Infinity : 0,
-        ease: "easeInOut",
-        delay: floatDelay,
-      }}
+      ref={shouldFloat ? ref : undefined}
+      animate={shouldFloat && isInView ? { y: [0, -8, 0] } : undefined}
+      transition={
+        shouldFloat
+          ? {
+              duration: floatDuration,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: floatDelay,
+            }
+          : undefined
+      }
     >
       <motion.div
-        className="flex items-center gap-3 rounded-2xl bg-card-bg px-4 py-3 shadow-sm"
-        whileHover={{ scale: 1.05, boxShadow: "0 8px 30px rgba(0,0,0,0.12)" }}
+        className={`flex items-center rounded-2xl bg-card-bg shadow-sm transition-shadow ${
+          compact ? "gap-2 px-3 py-2" : "gap-3 px-4 py-3"
+        }`}
+        whileHover={{
+          scale: 1.05,
+          boxShadow:
+            "0 14px 40px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06)",
+        }}
         transition={{ type: "spring", stiffness: 400, damping: 25 }}
       >
-        <div className="relative h-20 w-20 flex-shrink-0">
-          <div className="absolute inset-0 m-auto h-14 w-14 rounded-xl bg-[#E8E1D9]" />
+        <div className={`relative flex-shrink-0 ${compact ? "h-14 w-14" : "h-20 w-20"}`}>
+          <div className={`absolute inset-0 m-auto rounded-xl bg-[#E8E1D9] ${compact ? "h-10 w-10" : "h-14 w-14"}`} />
           <Image
             src={image}
             alt={name}
             width={128}
             height={128}
-            className="absolute inset-0 z-10 m-auto h-20 w-20 object-contain"
+            className={`absolute inset-0 z-10 m-auto object-contain ${compact ? "h-14 w-14" : "h-20 w-20"}`}
             style={
               imageScale !== 1 || imageOffsetX !== 0 || imageOffsetY !== 0
-                ? { transform: `scale(${imageScale}) translate(${imageOffsetX}px, ${imageOffsetY}px)` }
+                ? {
+                    transform: `scale(${imageScale}) translate(${imageOffsetX}px, ${imageOffsetY}px)`,
+                  }
                 : undefined
             }
           />
         </div>
-        <div>
-          <p className="font-sans text-sm font-semibold text-green-dark">
+        <div className="min-w-0">
+          <p className={`font-sans font-semibold text-green-dark ${compact ? "truncate text-xs" : "text-sm"}`}>
             {name}
           </p>
-          <p className="font-sans text-xs text-golden">{category}</p>
+          <p className={`font-sans text-golden ${compact ? "truncate text-[10px]" : "text-xs"}`}>{category}</p>
         </div>
       </motion.div>
     </motion.div>

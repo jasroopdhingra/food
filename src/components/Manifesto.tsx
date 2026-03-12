@@ -61,7 +61,7 @@ export default function Manifesto() {
   const chunks = chunkWords(manifestoText);
 
   return (
-    <section className="bg-white-warm px-4 py-10 sm:px-6 md:px-8 md:py-20">
+    <section id="manifesto" className="bg-white-warm px-4 py-10 sm:px-6 md:px-8 md:py-20">
       <p
         ref={textRef}
         className="mx-auto max-w-4xl text-center font-serif text-2xl font-bold leading-snug text-green-dark sm:text-3xl md:text-5xl md:leading-snug lg:text-6xl lg:leading-tight"

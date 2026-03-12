@@ -1,21 +1,28 @@
 import SmoothScroll from "@/components/SmoothScroll";
+import ScrollProgress from "@/components/ScrollProgress";
+import SectionNav from "@/components/SectionNav";
 import GovBanner from "@/components/GovBanner";
 import Hero from "@/components/Hero";
-import StatRing from "@/components/StatRing";
+import FoodMarquee from "@/components/FoodMarquee";
+import StatsSection from "@/components/StatRing";
 import Manifesto from "@/components/Manifesto";
 import DarkSection from "@/components/DarkSection";
 import ThreeSteps from "@/components/ThreeSteps";
 import PyramidSection from "@/components/PyramidSection";
 import GuidelinesCard from "@/components/GuidelinesCard";
 import ClosingStatement from "@/components/ClosingStatement";
+import EatRealFood from "@/components/EatRealFood";
 
 export default function Home() {
   return (
     <SmoothScroll>
+      <ScrollProgress />
+      <SectionNav />
       <GovBanner />
       <main>
         <Hero />
-        <StatRing />
+        <FoodMarquee />
+        <StatsSection />
         <Manifesto />
         <DarkSection>
           <ThreeSteps />
@@ -23,6 +30,7 @@ export default function Home() {
           <GuidelinesCard />
         </DarkSection>
         <ClosingStatement />
+        <EatRealFood />
       </main>
     </SmoothScroll>
   );

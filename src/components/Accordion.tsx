@@ -86,8 +86,8 @@ export default function Accordion({
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
                   transition={{
-                    height: { type: "spring", stiffness: 300, damping: 30 },
-                    opacity: { duration: 0.2 },
+                    height: { type: "spring", stiffness: 500, damping: 35 },
+                    opacity: { duration: 0.15 },
                   }}
                 >
                   <div className={compact ? "px-3 pb-3 sm:px-5 sm:pb-5" : "px-5 pb-5"}>

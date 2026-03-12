@@ -43,12 +43,14 @@ export default function PyramidSection() {
       if (Date.now() < userOverrideUntil.current) return;
 
       const rect = section.getBoundingClientRect();
-      const scrolledInto = -rect.top;
-      const progress = Math.max(0, Math.min(1, scrolledInto / rect.height));
+      const vh = window.innerHeight;
+      const traveled = vh - rect.top;
+      const totalTravel = rect.height + vh;
+      const progress = Math.max(0, Math.min(1, traveled / totalTravel));
 
       let next: number;
-      if (progress < 0.33) next = 0;
-      else if (progress < 0.66) next = 1;
+      if (progress < 0.4) next = 0;
+      else if (progress < 0.65) next = 1;
       else next = 2;
 
       setActiveCategory(next);
@@ -63,10 +65,10 @@ export default function PyramidSection() {
     <div
       id="pyramid"
       ref={sectionRef}
-      className="overflow-hidden pl-4 pr-0 pb-10 sm:pl-6 sm:pb-14 md:pl-12 lg:pl-16 lg:pb-12"
+      className="overflow-hidden pb-10 pl-4 pr-0 sm:pb-14 sm:pl-6 md:pl-12 lg:pb-12 lg:pl-16"
     >
-      <div className="relative grid grid-cols-[minmax(0,18rem)_1fr] items-start gap-4 sm:grid-cols-[minmax(0,22rem)_1fr] sm:gap-6 lg:grid-cols-[minmax(0,26rem)_1fr] lg:gap-10">
-        <div className="sticky top-24 self-start pt-2 sm:pt-4 lg:pt-6">
+      <div className="flex flex-col gap-6 md:grid md:grid-cols-[minmax(0,26rem)_1fr] md:items-start md:gap-6 lg:grid-cols-[minmax(0,28rem)_1fr] lg:gap-10">
+        <div className="pr-4 pt-2 sm:pt-4 md:sticky md:top-[25vh] md:self-start md:pr-0">
           <Accordion
             items={categories}
             defaultOpen={0}
@@ -77,9 +79,10 @@ export default function PyramidSection() {
         </div>
 
         <motion.div
-          className="ml-auto -mt-16 w-full max-w-[37rem] sm:-mt-20 sm:max-w-[45rem] lg:-mt-24 lg:max-w-[56rem]"
+          className="order-first mx-auto w-full max-w-[22rem] sm:max-w-[26rem] md:order-last md:ml-auto md:mr-0 md:-mt-12 md:max-w-none lg:-mt-20"
           initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{
             duration: 0.7,
             delay: 0.3,

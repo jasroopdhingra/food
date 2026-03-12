@@ -32,19 +32,16 @@ export default function ClosingStatement() {
 
     const chunks = sectionRef.current.querySelectorAll(".closing-chunk");
 
-    chunks.forEach((chunk, i) => {
-      const totalChunks = chunks.length;
-      const startOpacity = Math.max(0.15, 1 - (i / totalChunks) * 0.85);
-
+    chunks.forEach((chunk) => {
       const tween = gsap.fromTo(
         chunk,
-        { color: `rgba(45, 58, 46, ${startOpacity * 0.3})` },
+        { opacity: 0.12 },
         {
-          color: `rgba(45, 58, 46, ${startOpacity})`,
+          opacity: 1,
           ease: "power2.out",
           scrollTrigger: {
             trigger: chunk,
-            start: "top 90%",
+            start: "top 85%",
             end: "top 55%",
             scrub: 1,
           },
@@ -66,7 +63,8 @@ export default function ClosingStatement() {
   return (
     <section
       ref={sectionRef}
-      className="flex min-h-[50vh] items-center bg-white-warm px-4 py-12 sm:px-6 md:min-h-[60vh] md:px-8 md:py-24"
+      id="closing"
+      className="flex min-h-[40vh] items-center bg-white-warm px-4 py-12 sm:px-6 md:min-h-[50vh] md:px-8 md:py-16"
     >
       <p
         className="mx-auto max-w-4xl text-center font-serif text-2xl font-bold leading-snug sm:text-3xl md:text-5xl md:leading-snug lg:text-6xl lg:leading-tight"
