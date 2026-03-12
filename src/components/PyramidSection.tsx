@@ -26,19 +26,16 @@ const tiers = [
   {
     src: "/images/tier-protein.png",
     alt: "Protein and healthy fats: steak, salmon, avocado, shrimp, nuts",
-    clipPath: "",
     blendBlack: true,
   },
   {
     src: "/images/tier-vegetables.png",
     alt: "Vegetables and fruit: artichoke, onion, cauliflower, eggplant, tomato",
-    clipPath: "",
     blendBlack: true,
   },
   {
     src: "/images/tier-grains.png",
     alt: "Whole grains: rice bowl, wheat, seeds, beans",
-    clipPath: "",
     blendBlack: false,
   },
 ];
@@ -69,12 +66,51 @@ export default function PyramidSection() {
         </div>
 
         <div className="w-full px-4 sm:px-6 lg:w-[60%] lg:px-0">
-          <div className="mx-auto flex w-full max-w-xl flex-col gap-3 lg:gap-0">
+          {/* Mobile: simple stack with gaps */}
+          <div className="flex flex-col gap-3 lg:hidden">
             {tiers.map((tier, i) => (
               <motion.div
                 key={i}
-                className={`relative ${i > 0 ? "lg:mt-1" : ""}`}
                 initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{
+                  duration: 0.7,
+                  delay: i * 0.15,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                }}
+              >
+                <motion.div
+                  animate={{
+                    opacity:
+                      activeCategory === null || activeCategory === i
+                        ? 1
+                        : 0.35,
+                  }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={tier.src}
+                    alt={tier.alt}
+                    className="block h-auto w-full rounded-xl"
+                  />
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Desktop: layered pyramid with negative margins */}
+          <div className="relative hidden lg:block">
+            {tiers.map((tier, i) => (
+              <motion.div
+                key={i}
+                className="relative"
+                style={{
+                  zIndex: 10 - i,
+                  marginTop: i > 0 ? "-4px" : 0,
+                }}
+                initial={{ opacity: 0, x: 60 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{
@@ -97,11 +133,12 @@ export default function PyramidSection() {
                   <img
                     src={tier.src}
                     alt={tier.alt}
-                    className="block h-auto w-full overflow-hidden rounded-xl lg:rounded-none"
-                    style={{
-                      ...(isDesktop && tier.clipPath ? { clipPath: tier.clipPath } : {}),
-                      ...(isDesktop && tier.blendBlack ? { mixBlendMode: "lighten" as const } : {}),
-                    }}
+                    className="block h-auto w-full"
+                    style={
+                      tier.blendBlack
+                        ? { mixBlendMode: "lighten" }
+                        : undefined
+                    }
                   />
                 </motion.div>
               </motion.div>
