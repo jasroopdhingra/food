@@ -1,6 +1,4 @@
-# Real Food — A Radical New Approach To Health In America
-
-A single-page site inspired by [realfood.gov](https://realfood.gov) and [trumprx.gov](https://trumprx.gov), built with Next.js 16, React 19, Tailwind v4, GSAP, and Framer Motion.
+# Real Food
 
 **Live:** [real-food-app.vercel.app](https://real-food-app.vercel.app/)
 
