@@ -25,25 +25,16 @@ const categories = [
 
 const tiers = [
   {
-    src: "/pyramid/PYRAMID-TOP.png",
+    src: "/images/PYRAMID_TOP.png",
     alt: "Protein and healthy fats: steak, salmon, avocado, shrimp, nuts",
-    width: 800,
-    height: 400,
-    sizeClass: "w-[76%] lg:w-[68%]",
   },
   {
-    src: "/pyramid/PYRAMID-MID.png",
+    src: "/images/Pyramid-MIDDLE.png",
     alt: "Vegetables and fruit: artichoke, onion, cauliflower, eggplant, tomato",
-    width: 800,
-    height: 400,
-    sizeClass: "w-[95%] lg:w-[86%]",
   },
   {
-    src: "/pyramid/PYRAMID-BOTTOM.png",
+    src: "/images/PYRAMID-LAST.png",
     alt: "Whole grains: rice bowl, wheat, seeds, beans",
-    width: 800,
-    height: 400,
-    sizeClass: "w-[70%] lg:w-[62%]",
   },
 ];
 
@@ -55,8 +46,8 @@ export default function PyramidSection() {
       id="pyramid"
       className="relative overflow-hidden px-4 pt-2 pb-14 sm:px-6 sm:pb-20 md:px-12 lg:px-16 lg:pt-4 lg:pb-12"
     >
-      <div className="relative min-h-[30rem] sm:min-h-[35rem] lg:grid lg:min-h-[34rem] lg:grid-cols-[minmax(0,18rem)_1fr] lg:items-center lg:gap-8">
-        <div className="relative z-20 w-[min(44vw,13rem)] max-w-[13rem] pt-24 sm:w-[13.5rem] sm:max-w-[13.5rem] sm:pt-28 lg:w-full lg:max-w-sm lg:pt-0">
+      <div className="relative min-h-[30rem] sm:min-h-[35rem] lg:grid lg:min-h-[34rem] lg:grid-cols-[minmax(0,20rem)_1fr] lg:items-center lg:gap-12">
+        <div className="relative z-20 w-[min(50vw,14rem)] max-w-[14rem] pt-8 sm:w-[14rem] sm:max-w-[14rem] sm:pt-12 lg:w-full lg:max-w-sm lg:pt-0">
           <Accordion
             items={categories}
             defaultOpen={0}
@@ -65,43 +56,40 @@ export default function PyramidSection() {
           />
         </div>
 
-        <div className="pointer-events-none absolute top-0 right-[-8.5rem] z-10 flex w-[28rem] flex-col items-end sm:right-[-6.5rem] sm:w-[31rem] lg:relative lg:right-auto lg:ml-auto lg:w-[38rem] xl:w-[42rem]">
-          <div className="w-full">
-            {tiers.map((tier, i) => (
+        <div className="pointer-events-none absolute top-0 right-[-6rem] z-10 flex w-[24rem] flex-col items-center sm:right-[-4rem] sm:w-[28rem] lg:relative lg:right-auto lg:mx-auto lg:w-full lg:max-w-sm xl:max-w-md">
+          {tiers.map((tier, i) => (
+            <motion.div
+              key={i}
+              className={`w-full ${i > 0 ? "-mt-2 sm:-mt-3" : ""}`}
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{
+                duration: 0.6,
+                delay: i * 0.12,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
+            >
               <motion.div
-                key={i}
-                className={`${tier.sizeClass} ml-auto ${i === 0 ? "" : "-mt-4 sm:-mt-6 lg:-mt-8"}`}
-                initial={{ opacity: 0, x: 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{
-                  duration: 0.6,
-                  delay: i * 0.12,
-                  ease: [0.25, 0.46, 0.45, 0.94],
+                animate={{
+                  filter:
+                    activeCategory === null || activeCategory === i
+                      ? "brightness(1)"
+                      : "brightness(0.4)",
+                  scale: activeCategory === i ? 1.03 : 1,
                 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
               >
-                <motion.div
-                  animate={{
-                    filter:
-                      activeCategory === null || activeCategory === i
-                        ? "brightness(1)"
-                        : "brightness(0.35)",
-                    scale: activeCategory === i ? 1.02 : 1,
-                  }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                >
-                  <Image
-                    src={tier.src}
-                    alt={tier.alt}
-                    width={tier.width}
-                    height={tier.height}
-                    className="block h-auto w-full"
-                    style={{ mixBlendMode: "lighten" }}
-                  />
-                </motion.div>
+                <Image
+                  src={tier.src}
+                  alt={tier.alt}
+                  width={800}
+                  height={500}
+                  className="block h-auto w-full"
+                />
               </motion.div>
-            ))}
-          </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </div>

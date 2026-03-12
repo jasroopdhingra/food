@@ -21,7 +21,7 @@ const foodCards = [
   {
     name: "Kiwi",
     category: "Vegetable and Fruit",
-    image: "/images/kiwi.png",
+    image: "/images/KIWI-Picsart-BackgroundRemover.png",
     position: "left-[8%] top-[50%]",
     floatDuration: 3.2,
     floatDelay: 0,
@@ -29,7 +29,7 @@ const foodCards = [
   {
     name: "Salmon",
     category: "Protein and Fats",
-    image: "/images/salmon.png",
+    image: "/images/SALMON-Picsart-BackgroundRemover.png",
     position: "right-[8%] top-[50%]",
     floatDuration: 3.8,
     floatDelay: 0.5,
@@ -37,7 +37,7 @@ const foodCards = [
   {
     name: "Chicken Breast",
     category: "Protein and Fats",
-    image: "/images/chicken.png",
+    image: "/images/CHICKEN-Picsart-BackgroundRemover.png",
     position: "left-[25%] top-[65%]",
     floatDuration: 4.0,
     floatDelay: 0.3,
@@ -45,7 +45,7 @@ const foodCards = [
   {
     name: "Beans",
     category: "Vegetable and Fruit",
-    image: "/images/beans.png",
+    image: "/images/BEANS-Picsart-BackgroundRemover.png",
     position: "right-[25%] top-[65%]",
     floatDuration: 3.5,
     floatDelay: 1.0,
@@ -61,7 +61,7 @@ const foodCards = [
   {
     name: "Broccoli",
     category: "Vegetable and Fruit",
-    image: "/images/broccoli.png",
+    image: "/images/BROCCOLI-TRansparent.png",
     position: "right-[5%] top-[78%]",
     floatDuration: 3.3,
     floatDelay: 1.2,
